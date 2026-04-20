@@ -306,6 +306,7 @@ volScalarField TSolidus
         dimensionedVector("Us", U.dimensions(), vector::zero)
     );
 
+    // Darcy velocity field to represent the wire feed velocity (initialised to zero)
     volScalarField DCwire
     (
         IOobject

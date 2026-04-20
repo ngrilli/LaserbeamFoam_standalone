@@ -2,8 +2,6 @@
     alphasum *= 0.0;
     condensate = 1.0;
 
-    // refine_test*= 0.0;
-
     TSolidus *= 0.0;
     TLiquidus *= 0.0;
     LatentHeat *= 0.0;
@@ -12,6 +10,24 @@
     electrical_resistivity *= 0.0;
     eleccond *= 0.0;
     magperm *= 0.0;
+
+    // Impose wire feed velocity (m/s): x, y, z components
+    const scalar Us_x = 0.0;
+    const scalar Us_y = 0.0075;
+    const scalar Us_z = 0.0;
+
+    const dimensionedVector UsConst
+    (
+        "UsConst",
+        U.dimensions(),
+        vector(Us_x, Us_y, Us_z)
+    );
+    Us = UsConst;
+    Us.correctBoundaryConditions();
+
+    // Initialize the phase fraction of the wire to zero
+    alphaWire *= 0.0;
+
 
     forAllConstIter(PtrDictionary<phaseModel>, mixture.phases(), iter)
     {
@@ -72,17 +88,12 @@
         magperm += alpha1*phasepermeability;
 
 
-        // std::string str2("vapour");
+        // Store the wire phase fraction
+        if (phase1.name() == "wire")
+        {
+            alphaWire = alpha1;
+        }
 
-        // std::string phasename(phase1.name());
-
-        // const unsigned long res = phasename.find(str2);
-
-        // if (res != string::npos || phase1.name() == "air")
-        // {
-        //     condensate -= alpha1;
-        //     electrical_resistivity += alpha1/phaseconductivity;
-        // }
 
         if (phase1.isGaseous())
         {
@@ -93,8 +104,6 @@
         {
             electrical_resistivity += alpha1/phaseconductivity;
         }
-        
-
 
 
         alphasum += alpha1;
@@ -111,6 +120,7 @@
     LatentHeat.correctBoundaryConditions();
     TLiquidus.correctBoundaryConditions();
     TSolidus.correctBoundaryConditions();
+    alphaWire.correctBoundaryConditions();
 
 
     // Update the cell size fields
