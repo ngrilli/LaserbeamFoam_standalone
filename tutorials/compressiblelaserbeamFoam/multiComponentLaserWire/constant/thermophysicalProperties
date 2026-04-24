@@ -1,0 +1,67 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  v2006                                 |
+|   \\  /    A nd           | Website:  www.openfoam.com                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      thermophysicalProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+phases (substrate wire air);
+
+pMin            1000;
+
+P0	1e5;
+interface_thickness	1e-5;
+
+sigmas
+(
+	(substrate wire)	0.0
+	(substrate air)	1.0 // check	
+	(wire air)	1.0
+);
+
+dsigmadT
+(
+	(substrate wire)	0.0
+	(substrate air)	-1.0e-4 // check
+	(wire air)	-1.0e-4
+);
+
+boils
+(
+//(substrate wire) 2900.0
+//(substrate air) 3000.0
+//(wire air) 3100.0
+);
+
+LatentHeatGas
+(
+//(substrate wire) 1.0e6
+//(substrate air) 1.0e6
+//(wire air) 1.0e6
+);
+
+interfaceCompression
+(
+	(substrate wire)	0.0
+	(substrate air)	1.0
+	(wire air)	1.0
+);
+
+interfaceDiffusion
+(
+	(substrate wire)	0.0
+	(substrate air)	0.0
+	(wire air)	0.0
+);
+
+// ************************************************************************* //
