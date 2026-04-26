@@ -12,9 +12,22 @@
     magperm *= 0.0;
 
     // Impose wire feed velocity (m/s): x, y, z components
-    const scalar Us_x = 0.0;
-    const scalar Us_y = 0.0075;
-    const scalar Us_z = 0.0;
+    // after given start time
+    // https://www.sciencedirect.com/science/article/pii/S0017931025012281
+    const scalar feedStartTime = 0.09; // seconds
+    scalar Us_x;
+    scalar Us_y;
+    scalar Us_z;
+
+    if (runTime.value() < feedStartTime) {
+      Us_x = 0.0;
+      Us_y = 0.0;
+      Us_z = 0.0;
+    } else {
+      Us_x = 0.0;
+      Us_y = 0.010685; // wire feed rate in m/s (640 mm/min)
+      Us_z = -0.0075; // scanning speed in m/s (450 mm/min)
+    }
 
     const dimensionedVector UsConst
     (
@@ -159,9 +172,6 @@
     metalaverage = fvc::average(condensate);
     condensateFiltered = max(min(condensate, scalar(1)), scalar(0));
     condensateFiltered.correctBoundaryConditions();
-
-    // laser.refineFlag() *= 0.0;
-    // laser.refineFlag() += metalaverage;
 
     const volVectorField gradcondensate(fvc::grad(condensateFiltered));
 
