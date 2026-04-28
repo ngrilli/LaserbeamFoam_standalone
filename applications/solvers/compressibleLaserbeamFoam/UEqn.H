@@ -11,6 +11,8 @@ else
     DC =
         DarcyConstantlarge*Foam::pow((1.0 - epsilon1), 2)
        /(Foam::pow(epsilon1, 3) + DarcyConstantsmall);
+
+    DCwire = DC * pos0(alphaWire - 0.999999)*pos0(1.000001 - alphaWire);
 }
 
 
@@ -26,6 +28,7 @@ Marangoni = condensate*epsilon1*mixture.MarangoniForce(T);
       + fvm::div(mixture.rhoPhi(), U)
       + turbulence->divDevRhoReff(U)
       + fvm::Sp(DC, U)
+      - DCwire*Us
       + Marangoni
     );
 
