@@ -32,15 +32,15 @@ lasers
         }
 
         // Laser angle (normalised in the code)
-        V_incident (0.25 1 -0.433);
+        V_incident (0.0 0.866 0.5);
 
 
         // Laser radius
         laserRadius 500e-6;
 
         // Laser physical properties
-        wavelength      0.976e-6; //changed from 1.064e-6
-        e_num_density   5.83e29;
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
+        e_num_density   5.83e29; // from Ti test case ~/projects/LaserbeamFoam/tutorials/laserbeamFoam/Five_lasers/constant/LaserProperties
 
         // Laser profile type (defaults to 2)
         //Radius_Flavour 2.0;
@@ -61,19 +61,20 @@ lasers
         }
 
         // Laser angle (normalised in the code)
-        V_incident (-0.25 1 -0.433);
+        V_incident (0.433 0.866 0.25);
 
         // Laser radius
         laserRadius 500e-6;
 
         // Laser physical properties
-        wavelength      0.976e-6; //changed from 1.064e-6
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
         e_num_density   5.83e29;
 
         // Laser profile type (defaults to 2)
         //Radius_Flavour 2.0;
     }
-        laser2
+        
+    laser2
     {
         timeVsLaserPosition
         {
@@ -88,19 +89,20 @@ lasers
         }
 
         // Laser angle (normalised in the code)
-        V_incident (-0.5 1 0);
+        V_incident (0.433 0.866 -0.25);
 
         // Laser radius
         laserRadius 500e-6;
 
         // Laser physical properties
-        wavelength      0.976e-6; //changed from 1.064e-6
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
         e_num_density   5.83e29;
 
         // Laser profile type (defaults to 2)
         //Radius_Flavour 2.0;
     }
-        laser3
+        
+    laser3
     {
         timeVsLaserPosition
         {
@@ -115,19 +117,20 @@ lasers
         }
 
         // Laser angle (normalised in the code)
-        V_incident (-0.25 1 0.433);
+        V_incident (0.0 0.866 -0.5);
 
         // Laser radius
         laserRadius 500e-6;
 
         // Laser physical properties
-        wavelength      0.976e-6; //changed from 1.064e-6
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
         e_num_density   5.83e29;
 
         // Laser profile type (defaults to 2)
         //Radius_Flavour 2.0;
     }
-        laser4
+        
+    laser4
     {
         timeVsLaserPosition
         {
@@ -142,19 +145,20 @@ lasers
         }
 
         // Laser angle (normalised in the code)
-        V_incident (0.25 1 0.433);
+        V_incident (-0.433 0.866 -0.25);
 
         // Laser radius
         laserRadius 500e-6;
 
         // Laser physical properties
-        wavelength      0.976e-6; //changed from 1.064e-6
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
         e_num_density   5.83e29;
 
         // Laser profile type (defaults to 2)
         //Radius_Flavour 2.0;
     }
-		laser5
+		
+    laser5
     {
         timeVsLaserPosition
         {
@@ -169,13 +173,13 @@ lasers
         }
 
         // Laser angle (normalised in the code)
-        V_incident (0.5 1 0);
+        V_incident (-0.433 0.866 0.25);
 
         // Laser radius
         laserRadius 500e-6;
 
         // Laser physical properties
-        wavelength      0.976e-6; //changed from 1.064e-6
+        wavelength      0.976e-6; // section 4.1 in https://www.sciencedirect.com/science/article/pii/S0017931025012281
         e_num_density   5.83e29;
      
         // Laser profile type (defaults to 2)
