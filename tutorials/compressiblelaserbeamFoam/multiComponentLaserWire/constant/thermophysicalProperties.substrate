@@ -28,36 +28,47 @@ thermoType
     energy          sensibleInternalEnergy;
 }
 
-TSolidus	1800.0; // TO DO
-TLiquidus	1825.0;
-LatentHeat	2.7e5;
-elec_conductivity	1.0e6;
-magnetic_permeability	1.256e-6;
+// Table 1 in:
+// https://www.sciencedirect.com/science/article/pii/S1359645416310102
+TSolidus	1878.0;
+TLiquidus	1928.0;
+LatentHeat	1.305e6; // average between solid and liquid at melting point (J/Kg)
+
+// Highest data point (low porosity) in Figure 2 in:
+// https://iopscience.iop.org/article/10.1088/0256-307X/24/1/051/pdf
+// 0.4 \sigma_0 (Siemens per meter)
+elec_conductivity	0.936e6; // S/m
+
+// Ti64 is weakly paramagnetic = use the same value as vacuum: 4 pi 10^{-7} H/m
+magnetic_permeability	1.256e-6; // H/m
 
 mixture
 {
     specie
     {
-        molWeight   50.0;
+        molWeight   47.6;
     }
-    equationOfState
+    // Murnaghan model = stiffened adiabatic gas equation of state
+    // https://en.wikipedia.org/wiki/Tait_equation
+    equationOfState 
     {
-        p0	1e5;
-        rho0         5000;
-        gamma	1.2;
-        B	1e7;
+        p0	1e5; // atmospheric pressure
+        rho0    4000; // Density of liquid metal
+        gamma	1.2; // ratio between specific heats
+        B	1e7; // stiffness parameter that controls compressibility
     }
     thermodynamics
     {
-        Cp          800;
-        Hf          0;
+        Cp          700; // average between solid and liquid (J / Kg / K)
+        Hf          0; // relevant for combustion and chemical reactions
     }
     transport
     {
-        mu          5.0e-4;
-        Pr          0.005;
+        mu  5.0e-3; // viscosity (Pa s)
+
+        // Prandtl number = mu * Cp / thermal conductivity = 0.005 * 700 / 25 = 0.14
+        Pr  0.14;
     }
 }
-
 
 // ************************************************************************* //
