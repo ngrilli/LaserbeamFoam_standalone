@@ -32,23 +32,25 @@ TSolidus	5.0;
 TLiquidus	10.0;
 LatentHeat	1.0;
 elec_conductivity	1.0;
-magnetic_permeability	1.256e-6;
+magnetic_permeability	1.256e-6; // same as vacuum 4 pi 10^{-7} H/m
 
 mixture
 {
     specie
     {
-        molWeight   28.9;
+        molWeight   28.9; // g/mol
     }
     thermodynamics
     {
-        Cp          1007;
+        Cp          1007; // dry air at constant pressure (J/Kg)
         Hf          0;
     }
     transport
     {
+        // dry air at room temperature
+        // https://www.sciencedirect.com/science/article/pii/0017931064900663
         mu          1.84e-05;
-        Pr          0.7;
+        Pr          0.7; // Prandtl number = mu * Cp / thermal conductivity
     }
 }
 
