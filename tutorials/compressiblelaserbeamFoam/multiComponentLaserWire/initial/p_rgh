@@ -51,14 +51,9 @@ boundaryField
     }
 
     back
-    {
-       // type            totalPressure;
-       // p0              uniform 1e5;
-        
+    {   
         type            totalPressure;
         p0              uniform 1e5;
-      //  U               U;
-       // phi             phi;
     }
 
     defaultFaces

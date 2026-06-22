@@ -22,35 +22,32 @@ boundaryField
 {
     top
     {
-    
-    type            zeroGradient;
-    
-
+      type            zeroGradient;
     }
     
     bottom
     {
-       type            zeroGradient;
+      type            zeroGradient;
     }
     
     right
     {
-       type            zeroGradient;
+      type            zeroGradient;
     }
 
     left
     {
-       type            zeroGradient;
+      type            zeroGradient;
     }
     
     front
     {
-       type            zeroGradient;
+      type            zeroGradient;
     }
     
     back
     {
-type            zeroGradient;
+      type            zeroGradient;
     }
    
 }
